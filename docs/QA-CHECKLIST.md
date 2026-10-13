@@ -49,4 +49,15 @@
 | `npm run build` | 통과, `/` 및 `/admin/qa` 정적 생성 |
 | `npm run test:e2e` | 환경 차단: Chromium 시작 시 `socket() failed: Operation not permitted` |
 
-브라우저 테스트는 앱 실행 이전에 환경 제한으로 차단되었으며 통과로 간주하지 않습니다. 화면 캡처와 육안 검토도 로컬에서는 미실행입니다. GitHub Actions는 브라우저를 설치한 후 동일한 시나리오를 실행하고, `playwright-results` 아티팩트에 정상/오류 화면 캡처를 보관하도록 구성했습니다. Actions 결과는 별도로 확인해야 합니다.
+로컬 브라우저 테스트는 앱 실행 이전에 환경 제한으로 차단되었으며 통과로 간주하지 않습니다.
+
+### GitHub Actions 후속 검증
+
+[실행 38412151478](https://github.com/seongjun018/finish/actions/runs/38412151478), 구현 커밋 `0c1006f2f23e7fc78caaa815f91416b74d24640b`, 2026-10-13:
+
+- Node.js 22 / Ubuntu runner에서 설치, 타입 검사, 단위 테스트 30개, production build 통과.
+- Playwright 데스크톱 및 Pixel 7 에뮬레이션 **18개 테스트 통과 (24.4초)**.
+- 공통 5개 상태, 일시 오류 재시도, 중복 투표, Mock 전환, 실제 브라우저 offline/online, 빠른 기능 전환, 기능별 실패, URL 검증 및 데이터 펼치기 검증.
+- 정상·오류 화면 4장 캡처 후 데스크톱 정상/오류 및 모바일 오류 캡처를 육안 검토. 겹침·잘림 없음. 페이지 가로 넘침 자동 검사 통과.
+- 캡처는 `docs/screenshots/`에 WebP로 보관. 원본 PNG는 해당 Actions의 `playwright-results` artifact에 있음.
+- 브라우저 검증은 Chromium 및 모바일 에뮬레이션 기준이며, 실제 휴대폰/Safari나 팀 통합 환경 검증을 대체하지 않음.

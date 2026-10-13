@@ -4,6 +4,14 @@
 
 공식 프로젝트: https://github.com/paichai-nexus/nexus-event-platform
 
+## 화면 미리보기
+
+![데스크톱 오류 및 복구 화면](docs/screenshots/desktop-error.webp)
+
+[모바일 화면](docs/screenshots/mobile-error.webp) · [정상 화면](docs/screenshots/desktop-normal.webp)
+
+검증: 타입 검사, 단위 테스트 **30개**, production build, 데스크톱/모바일 브라우저 테스트 **18개** 통과. [GitHub Actions 실행 기록](https://github.com/seongjun018/finish/actions/runs/38412151478)
+
 ## 시작하기
 
 Node.js 22 LTS와 Git을 설치한 후 터미널에서 실행합니다.
